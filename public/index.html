@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Conservatory - Booking Preview</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>The Conservatory</h1>
+      <p class="lead">An intimate wedding venue at Blackberry Ridge</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="content">
+      <h2>Venue details</h2>
+      <p>Preview booking flow for The Conservatory. This demo routes payments to a connected Stripe account (Express).</p>
+      <ul>
+        <li>Capacity: 120</li>
+        <li>Available packages: Ceremony + Reception</li>
+      </ul>
+    </section>
+
+    <aside class="booking-card">
+      <form id="booking-form">
+        <h3>Book the Conservatory</h3>
+        <label>
+          Your name
+          <input name="name" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" required />
+        </label>
+        <label>
+          Event date
+          <input name="date" type="date" required />
+        </label>
+        <label>
+          Package
+          <select name="package">
+            <option value="ceremony">Ceremony - $500</option>
+            <option value="full">Ceremony + Reception - $2500</option>
+          </select>
+        </label>
+        <label>
+          Pay
+          <select id="pay-type" name="payType">
+            <option value="deposit">Deposit (25%)</option>
+            <option value="full">Full payment</option>
+          </select>
+        </label>
+
+        <label>
+          Connected account ID
+          <input id="connectedAccountId" name="connectedAccountId" placeholder="acct_..." required />
+          <small class="muted">Use the connected account ID created when your mother-in-law completes Stripe Express onboarding.</small>
+        </label>
+
+        <div class="total">
+          Total: <span id="total-amount">$500</span>
+        </div>
+
+        <button id="pay" type="submit" class="btn">Pay with Card</button>
+        <div class="disclosure">Payments are processed by the connected account owner. You will receive a receipt from Stripe.</div>
+      </form>
+    </aside>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

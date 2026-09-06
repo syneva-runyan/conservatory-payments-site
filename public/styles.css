@@ -1,0 +1,25 @@
+:root{
+  --bg:#fcfbf9;
+  --text:#222;
+  --muted:#6b6b6b;
+  --accent:#274e3f;
+  --card:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial, sans-serif;background:var(--bg);color:var(--text);margin:0}
+.hero{background-image:linear-gradient(rgba(39,78,63,0.45),rgba(39,78,63,0.45)),url('https://images.unsplash.com/photo-1507537514-4c6f6ae0a2f8?auto=format&fit=crop&w=1600&q=60');background-size:cover;background-position:center;padding:80px 20px;color:#fff}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;margin:0}
+.hero .lead{margin-top:8px;opacity:0.95}
+.container{display:grid;grid-template-columns:1fr 360px;gap:32px;max-width:1100px;margin:32px auto;padding:0 16px}
+.content{background:transparent;padding:8px}
+.booking-card{background:var(--card);padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+.booking-card h3{margin-top:0}
+.booking-card label{display:block;margin-bottom:12px;font-size:14px}
+.booking-card input, .booking-card select{width:100%;padding:8px;border:1px solid #e6e6e6;border-radius:6px}
+.btn{background:var(--accent);color:white;padding:12px 16px;border:none;border-radius:6px;cursor:pointer;font-weight:600}
+.btn:hover{filter:brightness(0.95)}
+.total{font-size:18px;margin:12px 0}
+.muted{color:var(--muted);font-size:12px}
+.disclosure{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:900px){.container{grid-template-columns:1fr}
+.booking-card{position:relative}}
