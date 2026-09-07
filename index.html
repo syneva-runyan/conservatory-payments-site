@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kaitlin &amp; Carter - Wedding Room Reservation</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy"><h1>Kaitlin &amp; Carter</h1><p class="lead">Reserve a room for their wedding at Blackberry Ridge</p><div class="ribbon-mark"><img class="ribbon-line" src="/ribbon-line.svg" alt="" /></div></div>
+      <img class="hero-photo" src="/wedding-photo.png" alt="Kaitlin and Carter celebrating by the coast" />
+    </div>
+  </header>
+  <main class="container">
+    <section class="content"><h2>Staying on-site</h2><p>Reserve your room for Kaitlin and Carter's wedding at The Conservatory here. Payments are securely processed through Stripe.</p><ul><li>Room reservations for wedding guests only</li><li>Bookings are available only during the wedding weekend, September 10–11, 2027</li><li>Select one wedding night or the full weekend, Friday &amp; Saturday</li></ul></section>
+    <aside class="booking-card"><form id="booking-form">
+      <h3>Reserve your room</h3>
+      <label>Your name<input name="name" required /></label>
+      <label>Email<input name="email" type="email" required /></label>
+      <input name="date" type="hidden" value="2027-09-11" />
+      <label>Stay length<select name="nights"><option value="1">Saturday - 1 night - $250</option><option value="2" selected>Friday &amp; Saturday - 2 nights - $500</option></select><span class="stay-dates-label">Days of stay</span><span id="stay-dates" class="stay-dates"></span><span id="stay-note" class="stay-note"></span></span></label>
+      <div class="total">Total: <span id="total-amount">$500.00</span></div><button id="pay" type="submit" class="btn">Continue to Payment</button><div class="disclosure">Payments are processed by the connected account owner. You will receive a receipt from Stripe.</div>
+    </form>
+    <div id="embedded-checkout" class="embedded-checkout" hidden></div>
+    <section id="confirmation" class="confirmation" hidden>
+      <p class="confirmation-kicker">Reservation confirmed</p>
+      <h3>We are so blessed to have you in our lives.</h3>
+      <p>We can't wait to see you there!</p>
+      <p class="confirmation-reference">Payment confirmation<br /><strong id="confirmation-reference">Loading...</strong></p>
+      <button id="return-to-payment" class="btn btn-secondary" type="button">Return to reservations</button>
+      <p class="confirmation-signoff">With love,<br />Kaitlin &amp; Carter</p>
+    </section>
+    </aside>
+  </main>
+  <footer class="site-footer"><img class="dog-mark" src="https://img.magnific.com/premium-vector/shih-tzu-dog-face-isolated-white-background-svg-vector-illustration_793674-179.jpg?w=2000" alt="Boddie" /></footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stripe Account Setup | Kaitlin & Carter</title>
+  <style>
+    @page { size: Letter; margin: 0.65in; }
+    :root { --ink:#2f302b; --muted:#6d7065; --olive:#5d684e; --paper:#fbfaf7; --line:#d9d5ca; --soft:#eef0e8; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial, sans-serif; font-size:11pt; line-height:1.5; }
+    .top { border-bottom:3px solid var(--olive); padding-bottom:20px; margin-bottom:24px; }
+    .eyebrow { color:var(--olive); font-size:9pt; font-weight:bold; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { margin:6px 0 4px; font-family:Georgia, serif; font-size:29pt; font-weight:normal; line-height:1.05; }
+    .subtitle { color:var(--muted); font-size:12pt; margin:0; }
+    h2 { color:var(--olive); font-family:Georgia, serif; font-size:17pt; font-weight:normal; margin:22px 0 8px; }
+    p { margin:7px 0; }
+    .intro { background:var(--soft); border-left:4px solid var(--olive); padding:12px 15px; margin:18px 0; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .box { border:1px solid var(--line); padding:12px 14px; }
+    .box h3 { margin:0 0 5px; font-size:11pt; color:var(--olive); }
+    ol { padding-left:23px; margin:7px 0; }
+    li { margin:7px 0; }
+    .callout { background:#f4f1eb; padding:12px 15px; margin-top:14px; }
+    .warning { color:#6f4c36; }
+    .footer { border-top:1px solid var(--line); margin-top:24px; padding-top:12px; color:var(--muted); font-size:9pt; }
+    code { font-family:Consolas, monospace; font-size:10pt; background:#eceae3; padding:2px 4px; }
+    .line { display:inline-block; min-width:250px; border-bottom:1px solid #999; height:1.1em; vertical-align:bottom; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="eyebrow">Kaitlin &amp; Carter's wedding</div>
+    <h1>Stripe Account Setup</h1>
+    <p class="subtitle">A quick guide for receiving room-reservation payments</p>
+  </header>
+
+  <div class="intro">
+    <strong>What this does:</strong> This creates or connects your Stripe account so wedding guests can pay for their room reservation. Payments are processed through Stripe and transferred to your connected account.
+  </div>
+
+  <h2>Before you begin</h2>
+  <div class="grid">
+    <div class="box"><h3>Have ready</h3><p>Your legal name, date of birth, home address, phone number, email address, and bank account details for payouts.</p></div>
+    <div class="box"><h3>Important</h3><p>Use the same email address where you received the Stripe onboarding invitation. Complete the process in a private browser window.</p></div>
+  </div>
+
+  <h2>Setup steps</h2>
+  <ol>
+    <li>Open the Stripe onboarding link sent to you by the site owner. Only use a link from that trusted message.</li>
+    <li>Choose <strong>Get started</strong> or sign in if Stripe asks you to continue with an existing account.</li>
+    <li>Enter your real legal and contact information. Stripe uses this information to verify the account.</li>
+    <li>Choose the account type Stripe recommends for you. This project uses a Stripe-hosted Express-style account.</li>
+    <li>Enter the bank account where you want payouts deposited. Review the routing and account numbers carefully.</li>
+    <li>Read and accept Stripe’s terms, then submit the onboarding form.</li>
+    <li>Return to the site owner and confirm that onboarding is complete. Do not send passwords, secret keys, or bank details by email or text.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>What happens next?</strong> The site owner will connect your Stripe account to the wedding reservation page. Guests will pay through Stripe, and the payment proceeds will be routed to your connected account according to the platform setup.
+  </div>
+
+  <h2>How to recognize a successful setup</h2>
+  <ul>
+    <li>Stripe says your account setup or verification is complete, or shows any remaining requirements clearly.</li>
+    <li>You can see your payout bank account in Stripe without sharing its details with anyone else.</li>
+    <li>The site owner confirms the connected account is ready for payments.</li>
+  </ul>
+
+  <div class="callout warning">
+    <strong>Security reminder:</strong> Never share your Stripe password, secret API keys, one-time passcodes, Social Security number, or bank account numbers with the site owner. Stripe collects sensitive information directly through its secure website.
+  </div>
+
+  <h2>Keep for your records</h2>
+  <p>Stripe account email: <span class="line"></span></p>
+  <p>Stripe support: <strong>support.stripe.com</strong></p>
+
+  <footer class="footer">Prepared for Kaitlin &amp; Carter's wedding room reservation site. This guide explains the connection process; Stripe makes the final verification and payout decisions.</footer>
+</body>
+</html>

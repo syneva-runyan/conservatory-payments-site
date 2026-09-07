@@ -1,25 +1,420 @@
-:root{
-  --bg:#fcfbf9;
-  --text:#222;
-  --muted:#6b6b6b;
-  --accent:#274e3f;
-  --card:#ffffff;
+:root {
+  --bg: #f4f1eb;
+  --text: #2f302b;
+  --muted: #77766c;
+  --accent: #5d684e;
+  --accent-dark: #49533d;
+  --card: #fbfaf7;
+  --line: #d9d5ca;
 }
-*{box-sizing:border-box}
-body{font-family:Inter,system-ui,Arial, sans-serif;background:var(--bg);color:var(--text);margin:0}
-.hero{background-image:linear-gradient(rgba(39,78,63,0.45),rgba(39,78,63,0.45)),url('https://images.unsplash.com/photo-1507537514-4c6f6ae0a2f8?auto=format&fit=crop&w=1600&q=60');background-size:cover;background-position:center;padding:80px 20px;color:#fff}
-.hero h1{font-family:'Playfair Display',serif;font-size:48px;margin:0}
-.hero .lead{margin-top:8px;opacity:0.95}
-.container{display:grid;grid-template-columns:1fr 360px;gap:32px;max-width:1100px;margin:32px auto;padding:0 16px}
-.content{background:transparent;padding:8px}
-.booking-card{background:var(--card);padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
-.booking-card h3{margin-top:0}
-.booking-card label{display:block;margin-bottom:12px;font-size:14px}
-.booking-card input, .booking-card select{width:100%;padding:8px;border:1px solid #e6e6e6;border-radius:6px}
-.btn{background:var(--accent);color:white;padding:12px 16px;border:none;border-radius:6px;cursor:pointer;font-weight:600}
-.btn:hover{filter:brightness(0.95)}
-.total{font-size:18px;margin:12px 0}
-.muted{color:var(--muted);font-size:12px}
-.disclosure{font-size:12px;color:var(--muted);margin-top:8px}
-@media(max-width:900px){.container{grid-template-columns:1fr}
-.booking-card{position:relative}}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0
+}
+
+.hero {
+  background: #656c5a;
+  padding: 56px 16px;
+  color: #fff
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 460px);
+  align-items: center;
+  gap: 72px;
+  max-width: 1280px;
+  margin: 0 auto
+}
+
+.hero-copy {
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  border: 8px solid rgba(255, 255, 255, .78);
+  box-shadow: 0 14px 32px rgba(35, 38, 30, .22)
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 7vw, 82px);
+  font-weight: 500;
+  letter-spacing: .02em;
+  margin: 0
+}
+
+.hero .lead {
+  font-size: 15px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-top: 10px;
+  opacity: .94
+}
+
+.ribbon-mark {
+  width: min(100%, 520px);
+  margin: 26px auto 0
+}
+
+.ribbon-line {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0
+}
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  padding: 44px 16px 56px;
+  background: var(--bg)
+}
+
+.dog-mark {
+  display: block;
+  width: 120px;
+  height: 80px;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  mix-blend-mode: multiply;
+  margin: 0
+}
+
+.container {
+  display: block;
+  max-width: 1280px;
+  margin: 56px auto;
+  padding: 0
+}
+
+.content {
+  background: transparent;
+  padding: 8px 48px;
+  margin-bottom: 36px
+}
+
+.content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin: 0 0 12px
+}
+
+.content p,
+.content li {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #5e5e56
+}
+
+.content ul {
+  padding-left: 20px
+}
+
+.booking-card {
+  background: var(--card);
+  padding: 30px;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(58, 57, 45, .07)
+}
+
+.booking-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 24px
+}
+
+.booking-card label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #62645a
+}
+
+.booking-card input,
+.booking-card select {
+  display: block;
+  width: 100%;
+  padding: 11px 2px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--text);
+  font: 16px 'Montserrat', sans-serif;
+  margin-top: 6px
+}
+
+.booking-card .fixed-date {
+  display: block;
+  margin-top: 6px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--line);
+  font: 15px 'Montserrat', sans-serif;
+  color: var(--text);
+  letter-spacing: 0;
+  text-transform: none
+}
+
+.booking-card input:focus,
+.booking-card select:focus {
+  outline: 0;
+  border-color: var(--accent)
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font: 600 11px 'Montserrat', sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase
+}
+
+.btn:hover {
+  background: var(--accent-dark)
+}
+
+.total {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  margin: 20px 0 16px
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px
+}
+
+.disclosure {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px
+}
+
+.embedded-checkout {
+  min-height: 420px
+}
+
+.confirmation {
+  text-align: center;
+  padding: 38px 22px 28px;
+  border: 1px solid var(--accent);
+  background: #f0eee6;
+  box-shadow: 0 12px 28px rgba(58, 57, 45, .1)
+}
+
+.confirmation-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin: 0 0 18px
+}
+
+.confirmation h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.02;
+  margin: 0 auto 14px;
+  max-width: 420px
+}
+
+.confirmation p:not(.confirmation-kicker):not(.confirmation-signoff) {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  margin: 0
+}
+
+.confirmation-reference {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 10px !important;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 24px 0 20px !important
+}
+
+.confirmation-reference strong {
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: .12em
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+  margin-top: 2px
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: #fff
+}
+
+.confirmation-signoff {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 24px 0 0
+}
+
+@media(max-width:900px) {
+  .hero {
+    padding: 72px 24px
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 28px
+  }
+
+  .hero-copy {
+    padding: 24px
+  }
+
+  .hero-photo {
+    max-width: 460px;
+    justify-self: center
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin: 40px auto;
+    padding: 0 24px
+  }
+
+  .booking-card {
+    position: relative
+  }
+}
+
+@media(max-width:600px) {
+  .hero {
+    padding: 58px 16px
+  }
+
+  .hero-inner {
+    gap: 20px
+  }
+
+  .hero-copy {
+    padding: 20px 12px
+  }
+
+  .hero-photo {
+    max-width: none;
+    border-width: 5px
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 15vw, 68px);
+    line-height: .95
+  }
+
+  .hero .lead {
+    line-height: 1.7;
+    letter-spacing: .14em
+  }
+
+  .container {
+    margin: 32px auto;
+    padding: 0
+  }
+
+  .content {
+    padding: 8px 10px
+  }
+
+  .content h2 {
+    font-size: 36px;
+    padding: 0 10px;
+  }
+
+  .content p,
+  .content li {
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0 10px;
+  }
+
+  .booking-card {
+    padding: 24px 20px
+  }
+
+  .booking-card h3 {
+    font-size: 30px
+  }
+
+  .btn {
+    width: 100%
+  }
+}
+
+.stay-dates-label,
+.stay-dates {
+  display: block;
+  letter-spacing: 0;
+  text-transform: none
+}
+
+.stay-dates-label {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 14px
+}
+
+.stay-dates {
+  margin-top: 5px;
+  color: var(--text);
+  font: 13px 'Montserrat', sans-serif
+}
+
+.wedding-date-note {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font: 12px 'Montserrat', sans-serif;
+  letter-spacing: 0;
+  text-transform: none
+}
+
+.stay-note {
+  color: var(--accent);
+  display: block;
+  margin-top: 8px;
+  font: 12px 'Montserrat', sans-serif;
+  letter-spacing: 0;
+  text-transform: none
+}

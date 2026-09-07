@@ -1,22 +1,24 @@
 {
   "name": "conservatory-payments-site",
   "version": "1.0.0",
-  "description": "Static booking page + Stripe Connect serverless functions for The Conservatory at Blackberry Ridge - Conservatory",
-  "main": "index.js",
+  "description": "Vite booking page + Stripe Connect API for The Conservatory at Blackberry Ridge",
+  "main": "server.js",
   "scripts": {
-    "dev": "netlify dev",
-    "start": "netlify dev",
-    "build": "echo \"No build step for preview\"",
+    "dev": "concurrently \"npm run server\" \"vite\"",
+    "start": "npm run dev",
+    "build": "vite build",
+    "server": "node server.js",
     "test": "echo \"No tests configured\""
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "stripe": "^12.12.0",
-    "serve": "^14.2.0"
+    "stripe": "^22.6.1",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "netlify-cli": "^20.14.7"
+    "concurrently": "^9.0.1",
+    "vite": "^6.0.0"
   }
 }

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180" role="img" aria-labelledby="title desc">
+  <title id="title">Friendly Shih Tzu Poodle cartoon</title>
+  <desc id="desc">A fluffy cartoon Shih Tzu Poodle peeking over a line with its paws.</desc>
+  <g stroke="#151712" stroke-linecap="round" stroke-linejoin="round">
+    <!-- soft fluffy head and topknot -->
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M73 142c-7-18-5-42 5-59 7-12 17-21 30-26 6-18 20-29 37-29 15 0 27 7 34 20 16 2 29 12 37 27 9 18 10 46 2 67H73Z"/>
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M104 48c-2-10 3-20 13-25 7 2 12 8 12 16 7-8 17-9 24-2-1 10-9 16-19 17"/>
+    <!-- long floppy ears -->
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M94 58c-19-3-34 5-41 20-8 17-3 39 10 52 8 8 19 8 27 0 10-10 11-27 7-43-3-13-4-22-3-29Z"/>
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M181 53c19-2 34 7 40 22 7 18 1 39-13 51-8 7-19 6-27-2-9-10-10-27-6-42 4-13 6-22 6-29Z"/>
+    <path fill="none" stroke="#f4f1eb" stroke-width="1.7" d="M68 83c-2 14 2 27 11 36M76 75c-1 16 3 29 12 38M208 78c2 14-2 27-11 37M200 72c1 16-3 29-12 39" opacity=".8"/>
+    <!-- friendly eyes -->
+    <ellipse fill="#f4f1eb" stroke="#f4f1eb" stroke-width="2" cx="111" cy="82" rx="14" ry="11"/>
+    <ellipse fill="#f4f1eb" stroke="#f4f1eb" stroke-width="2" cx="169" cy="82" rx="14" ry="11"/>
+    <circle fill="#151712" stroke="none" cx="112" cy="83" r="6"/>
+    <circle fill="#151712" stroke="none" cx="168" cy="83" r="6"/>
+    <circle fill="#f4f1eb" stroke="none" cx="114" cy="81" r="2"/>
+    <circle fill="#f4f1eb" stroke="none" cx="170" cy="81" r="2"/>
+    <!-- compact muzzle -->
+    <path fill="#f4f1eb" stroke="#f4f1eb" stroke-width="2" d="M119 97c8-8 22-8 30 0 2 12-4 22-15 23-11-1-17-11-15-23Z"/>
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="2" d="M130 100c3-4 8-4 11 0 0 6-2 9-6 9-3 0-5-3-5-9Z"/>
+    <path fill="none" stroke="#151712" stroke-width="2" d="M136 109c0 5 1 7 4 8M130 118c5 3 11 3 16 0"/>
+    <!-- paws over perch -->
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M91 143c-5-9-3-18 4-24 8-6 18-3 23 5 4 8 2 16-5 21-7 5-17 4-22-2Z"/>
+    <path fill="#151712" stroke="#f4f1eb" stroke-width="3" d="M162 143c-5-9-3-18 4-24 8-6 18-3 23 5 4 8 2 16-5 21-7 5-17 4-22-2Z"/>
+    <path fill="none" stroke="#f4f1eb" stroke-width="1.4" d="M99 130c-2 5-1 9 2 13M108 128c-1 5 0 10 3 13M170 130c-2 5-1 9 2 13M179 128c-1 5 0 10 3 13" opacity=".8"/>
+    <path fill="none" stroke="#151712" stroke-width="3" d="M27 146h226"/>
+  </g>
+</svg>
