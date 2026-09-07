@@ -9,11 +9,17 @@ const returnToPayment = document.getElementById('return-to-payment');
 const stayDatesEl = document.getElementById('stay-dates');
 const stayNoteEl = document.getElementById('stay-note');
 
+function showConfirmation(){
+  form.hidden = true;
+  checkoutContainer.hidden = true;
+  confirmation.hidden = false;
+  requestAnimationFrame(() => confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
+
 if(window.location.pathname === '/success' && new URLSearchParams(window.location.search).has('session_id')){
   const sessionId = new URLSearchParams(window.location.search).get('session_id');
   const bookingId = sessionStorage.getItem('bookingId');
-  form.hidden = true;
-  confirmation.hidden = false;
+  showConfirmation();
   confirmationReference.textContent = 'Loading payment ID...';
   fetch(`/api/payment-details?session_id=${encodeURIComponent(sessionId)}`)
     .then(response => response.json())
@@ -76,7 +82,10 @@ form.addEventListener('submit', async (e) =>{
     const config = await configRes.json();
     if(!config.publishableKey) throw new Error('Stripe publishable key is not configured.');
     const stripe = Stripe(config.publishableKey);
-    const checkout = await stripe.initEmbeddedCheckout({ clientSecret: body.clientSecret });
+    const checkout = await stripe.initEmbeddedCheckout({
+      clientSecret: body.clientSecret,
+      onComplete: showConfirmation
+    });
     form.hidden = true;
     checkoutContainer.hidden = false;
     checkout.mount(checkoutContainer);
