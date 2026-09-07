@@ -5,6 +5,12 @@ const fs = require('fs').promises;
 const path = require('path');
 const Stripe = require('stripe');
 
+const requiredEnvironment = ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY', 'STRIPE_CONNECTED_ACCOUNT_ID', 'STRIPE_WEBHOOK_SECRET'];
+const missingEnvironment = requiredEnvironment.filter(name => !process.env[name]);
+if (missingEnvironment.length) {
+  throw new Error(`Missing required environment variables: ${missingEnvironment.join(', ')}`);
+}
+
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const dataFile = path.join(__dirname, 'data', 'bookings.json');
 const port = Number(process.env.PORT || process.env.API_PORT || 8888);
