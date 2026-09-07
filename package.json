@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
-    "start": "npm run dev",
+    "start": "node server.js",
     "build": "vite build",
     "server": "node server.js",
     "test": "echo \"No tests configured\""

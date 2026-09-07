@@ -7,7 +7,8 @@ const Stripe = require('stripe');
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const dataFile = path.join(__dirname, 'data', 'bookings.json');
-const port = Number(process.env.API_PORT || 8888);
+const port = Number(process.env.PORT || process.env.API_PORT || 8888);
+const publicDir = path.join(__dirname, 'dist');
 
 async function readBookings() {
   try { return JSON.parse(await fs.readFile(dataFile, 'utf8') || '[]'); }
@@ -16,6 +17,24 @@ async function readBookings() {
 async function writeBookings(records) { await fs.writeFile(dataFile, JSON.stringify(records, null, 2), 'utf8'); }
 async function readBody(request) { const chunks = []; for await (const chunk of request) chunks.push(chunk); return Buffer.concat(chunks); }
 function sendJson(response, statusCode, body) { response.writeHead(statusCode, { 'Content-Type': 'application/json' }); response.end(JSON.stringify(body)); }
+const contentTypes = { '.css': 'text/css', '.js': 'text/javascript', '.html': 'text/html', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp' };
+async function serveStatic(request, response) {
+  const requestedPath = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+  const relativePath = requestedPath === '/' ? '/index.html' : requestedPath;
+  const filePath = path.resolve(publicDir, `.${relativePath}`);
+  if (!filePath.startsWith(path.resolve(publicDir))) return sendJson(response, 403, { error: 'Forbidden' });
+  try {
+    const body = await fs.readFile(filePath);
+    response.writeHead(200, { 'Content-Type': contentTypes[path.extname(filePath)] || 'application/octet-stream' });
+    response.end(body);
+  } catch {
+    try {
+      const body = await fs.readFile(path.join(publicDir, 'index.html'));
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end(body);
+    } catch { sendJson(response, 404, { error: 'Not found' }); }
+  }
+}
 async function stripeV2Request(endpoint, body) {
   const result = await fetch(`https://api.stripe.com/v2/${endpoint}`, {
     method: 'POST',
@@ -102,6 +121,7 @@ const server = http.createServer(async (request, response) => {
   if (request.method === 'POST' && request.url === '/api/create-checkout-session') return createCheckout(request, response);
   if (request.method === 'POST' && request.url === '/api/create-express-account') return createExpressAccount(request, response);
   if (request.method === 'POST' && request.url === '/api/webhook') return handleWebhook(request, response);
+  if (request.method === 'GET') return serveStatic(request, response);
   sendJson(response, 404, { error: 'Not found' });
 });
 server.listen(port, () => console.log(`API listening on http://localhost:${port}`));
