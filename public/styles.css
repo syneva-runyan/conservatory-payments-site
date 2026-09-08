@@ -425,6 +425,7 @@ body {
 }
 
 .stay-dates {
+  line-height: 1.45em;
   margin-top: 5px;
   color: var(--text);
   font: 13px 'Montserrat', sans-serif
