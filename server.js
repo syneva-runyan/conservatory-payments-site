@@ -68,7 +68,7 @@ async function createCheckout(request, response) {
     const platformUrl = process.env.PLATFORM_URL || 'http://localhost:5173';
     const session = await stripe.checkout.sessions.create({
       mode: 'payment', ui_mode: 'embedded_page',
-      line_items: [{ price_data: { currency, product_data: { name: `Blackberry Ridget Room Reservation - ${newBooking.nights} night${newBooking.nights === '1' ? '' : 's'}` }, unit_amount: amount }, quantity: 1 }],
+      line_items: [{ price_data: { currency, product_data: { name: `Blackberry Ridge Room Reservation - ${newBooking.nights} night${newBooking.nights === '1' ? '' : 's'}` }, unit_amount: amount }, quantity: 1 }],
       payment_intent_data: { receipt_email: booking.customer_email, transfer_data: { destination: connectedAccountId } }, customer_email: booking.customer_email, metadata: { booking_id: id },
       return_url: `${platformUrl}/success?session_id={CHECKOUT_SESSION_ID}`
     });

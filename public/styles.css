@@ -88,15 +88,44 @@ body {
   background: var(--bg)
 }
 
+.dog-footer-mark {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  isolation: isolate
+}
+
 .dog-mark {
   display: block;
-  width: 120px;
-  height: 80px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
   object-position: center;
   background: transparent;
   mix-blend-mode: multiply;
+  filter: contrast(1.35) saturate(1.15) brightness(1.05);
   margin: 0
+}
+
+.dog-mark {
+  cursor: pointer
+}
+
+.dog-mark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 50%
+}
+
+.bowtie-mark {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  width: 61px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  filter: drop-shadow(0 2px 2px rgba(35, 38, 30, .22))
 }
 
 .container {
@@ -413,7 +442,7 @@ body {
 .stay-note {
   color: var(--accent);
   display: block;
-  margin-top: 8px;
+  margin-top: 10px;
   font: 12px 'Montserrat', sans-serif;
   letter-spacing: 0;
   text-transform: none

@@ -6,8 +6,83 @@ const checkoutContainer = document.getElementById('embedded-checkout');
 const confirmation = document.getElementById('confirmation');
 const confirmationReference = document.getElementById('confirmation-reference');
 const returnToPayment = document.getElementById('return-to-payment');
-const stayDatesEl = document.getElementById('stay-dates');
 const stayNoteEl = document.getElementById('stay-note');
+const stayDatesEl = document.getElementById('stay-dates');
+const dogEl = document.querySelector('.dog-mark');
+
+let barkContext;
+let lastBarkAt = 0;
+let barkBufferPromise;
+
+function loadBark(){
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if(!AudioContextClass) return Promise.resolve(null);
+  barkContext ||= new AudioContextClass();
+  barkBufferPromise ||= fetch('/dogBark.mp3')
+    .then(response => response.arrayBuffer())
+    .then(buffer => barkContext.decodeAudioData(buffer));
+  return barkBufferPromise;
+}
+
+function firstBarkWindow(buffer){
+  const samples = buffer.getChannelData(0);
+  const windowSize = Math.max(1, Math.floor(buffer.sampleRate * .01));
+  const levels = [];
+  for(let offset = 0; offset < samples.length; offset += windowSize) {
+    let energy = 0;
+    const end = Math.min(offset + windowSize, samples.length);
+    for(let index = offset; index < end; index += 1) energy += samples[index] ** 2;
+    levels.push(Math.sqrt(energy / (end - offset)));
+  }
+  const peak = Math.max(...levels);
+  const threshold = Math.max(peak * .1, .008);
+  const startWindow = levels.findIndex(level => level > threshold);
+  if(startWindow < 0) return { start: 0, duration: Math.min(buffer.duration, .8) };
+  let endWindow = startWindow;
+  let quietWindows = 0;
+  for(let index = startWindow; index < levels.length; index += 1) {
+    if(levels[index] <= threshold) quietWindows += 1;
+    else quietWindows = 0;
+    if(quietWindows >= 12) {
+      endWindow = index - quietWindows + 1;
+      break;
+    }
+    endWindow = index;
+  }
+  const start = Math.max(0, (startWindow - 2) * .01);
+  const end = Math.min(buffer.duration, (endWindow + 3) * .01);
+  return { start, duration: Math.max(.08, end - start) };
+}
+
+function playBark(force = false){
+  const now = performance.now();
+  if(!force && now - lastBarkAt < 450) return;
+  lastBarkAt = now;
+  loadBark().then(buffer => {
+    if(!buffer) return;
+    const play = () => {
+      const clip = firstBarkWindow(buffer);
+      const source = barkContext.createBufferSource();
+      const gain = barkContext.createGain();
+      source.buffer = buffer;
+      source.playbackRate.value = .73;
+      gain.gain.value = .8;
+      source.connect(gain);
+      gain.connect(barkContext.destination);
+      source.start(0, clip.start, clip.duration);
+    };
+    if(barkContext.state === 'suspended') barkContext.resume().then(play);
+    else play();
+  }).catch(() => {});
+}
+
+dogEl.addEventListener('click', () => playBark(true));
+dogEl.addEventListener('keydown', (event) => {
+  if(event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    playBark(true);
+  }
+});
 
 function showConfirmation(){
   form.hidden = true;
@@ -53,8 +128,8 @@ function updateStayDates(nights){
   const lastNight = new Date(firstNight);
   lastNight.setDate(lastNight.getDate() + Number(nights) - 1);
   const dateFormat = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-  stayDatesEl.textContent = `${dateFormat.format(firstNight)}${Number(nights) > 1 ? ` - ${dateFormat.format(lastNight)}` : ''}`;
   stayNoteEl.textContent = Number(nights) === 1 ? 'Just the wedding night' : 'The full wedding weekend';
+  stayDatesEl.textContent = `${dateFormat.format(firstNight)}${Number(nights) > 1 ? ` - ${dateFormat.format(lastNight)}` : ''}`;
 }
 
 form.nights.addEventListener('change', updateTotal);

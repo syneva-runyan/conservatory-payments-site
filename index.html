@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kaitlin &amp; Carter - Wedding Room Reservation</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
   <link rel="stylesheet" href="/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://js.stripe.com/v3/"></script>
@@ -22,7 +23,7 @@
       <label>Your name<input name="name" required /></label>
       <label>Email<input name="email" type="email" required /></label>
       <input name="date" type="hidden" value="2027-09-11" />
-      <label>Stay length<select name="nights"><option value="1">Saturday - 1 night - $250</option><option value="2" selected>Friday &amp; Saturday - 2 nights - $500</option></select><span class="stay-dates-label">Days of stay</span><span id="stay-dates" class="stay-dates"></span><span id="stay-note" class="stay-note"></span></span></label>
+      <label>Stay length<select name="nights"><option value="1">Saturday - 1 night - $250</option><option value="2" selected>Friday &amp; Saturday - 2 nights - $500</option></select><span id="stay-note" class="stay-note"></span><span id="stay-dates" class="stay-dates"></span></label>
       <div class="total">Total: <span id="total-amount">$500.00</span></div><button id="pay" type="submit" class="btn">Continue to Payment</button><div class="disclosure">Payments are processed by the connected account owner. You will receive a receipt from Stripe.</div>
     </form>
     <div id="embedded-checkout" class="embedded-checkout" hidden></div>
@@ -36,7 +37,7 @@
     </section>
     </aside>
   </main>
-  <footer class="site-footer"><img class="dog-mark" src="https://img.magnific.com/premium-vector/shih-tzu-dog-face-isolated-white-background-svg-vector-illustration_793674-179.jpg?w=2000" alt="Boddie" /></footer>
+  <footer class="site-footer"><div class="dog-footer-mark"><img class="dog-mark" src="/dog.png" alt="Boddie - play bark sound" tabindex="0" role="button" /><img class="bowtie-mark" src="/bowtie.svg" alt="Wedding bow tie" /></div></footer>
   <script type="module" src="/app.js"></script>
 </body>
 </html>
