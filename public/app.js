@@ -129,7 +129,10 @@ function updateStayDates(nights){
   lastNight.setDate(lastNight.getDate() + Number(nights) - 1);
   const dateFormat = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
   stayNoteEl.textContent = Number(nights) === 1 ? 'Just the wedding night' : 'The full wedding weekend';
-  stayDatesEl.textContent = `${dateFormat.format(firstNight)}${Number(nights) > 1 ? ` - ${dateFormat.format(lastNight)}` : ''}`;
+  stayDatesEl.replaceChildren(document.createTextNode(dateFormat.format(firstNight)));
+  if(Number(nights) > 1) {
+    stayDatesEl.append(document.createElement('br'), document.createTextNode(dateFormat.format(lastNight)));
+  }
 }
 
 form.nights.addEventListener('change', updateTotal);
